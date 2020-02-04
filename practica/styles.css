@@ -32,3 +32,32 @@
 	margin-right: 35% !important;
 	
 }
+
+/*pantallas seleccion nivel*/
+
+#levelselectscreen {
+	padding-top: 150px;
+	padding-left: 50px;
+}
+#levelselectscreen input {
+	margin: 20px;
+	cursor: pointer;
+	background: url(Assets/images/icons/level.png) no-repeat;
+	color: yellow;
+	font-size: 20px;
+	width: 64px;
+	height: 64px;
+	border: 0;
+}
+/* pantalla de carga*/
+#loadingscreen{
+	background: rgba(100,100,100,0.3);
+}
+#loadingmessage{
+	margin-top: 400px;
+	text-align: center;
+	height: 48px;
+	color: white;
+	background: url(Assets/images/loader.gif) no-repeat center;
+	font: 12px Arial;
+}
