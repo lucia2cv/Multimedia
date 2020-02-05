@@ -8,8 +8,8 @@ var game = {
 		//inicializar objetos
 		levels.init();
 
-		/*inicializar assets
-		loader.init();*/
+		//inicializar assets
+		loader.init();
 		//ocultar todas las capas del juego menos la pantalla de inicio
 		$('.gamelayer').hide();
 		$('#gamestartscreen').show();
@@ -63,7 +63,7 @@ var levels = {
 
 	}
 }	
-/*var loader = {
+var loader = {
 	loaded:true,
 	loadedCount: 0, //contador de assets cargados antes
 	totalCount:0, //assets que es necesario cargar
@@ -107,7 +107,7 @@ var levels = {
 	itemLoaded:function(){
 		loader.loadedCount++;
 		$('#loadingmessage').html('Loaded ' + loader.loadedCount+' of '+loader.totalCount);
-		if ((loader.loadedCount === loader.totalCount){ 
+		if ((loader.loadedCount === loader.totalCount)) { 
 
 			loader.loaded = true;
 			$('#loadingscreen').hide();
@@ -118,4 +118,4 @@ var levels = {
 			}
 		}
 	}
-}*/
+}
