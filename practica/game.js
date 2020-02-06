@@ -1,3 +1,26 @@
+//preparar animaciones 
+(function(){
+	var lastTime=0;
+	var vendors = ['ms', 'moz', 'webkit', 'o'];
+	for(var x = 0;  x < vendors.length && !window.requestAnimationFrame; ++x){
+		window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+		window.cancelAnimationFrame = window[vendors[x]+ 'CancelAnimationFrame'] || window [vendors[x] + 'CancelAnimationFrame'];
+	}
+	if(!window.requestAnimationFrame)
+		window.requestAnimationFrame = function(callback, element){
+			var currTime = new Date().getTime();
+			var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+			var id = window.setTimeout(function(){callback(currTime + timeToCall);}, timeToCall);
+			lastTime = currTime +timeToCall;
+			return id;
+		};
+
+	if(!window.CancelAnimationFrame)
+		window.CancelAnimationFrame = function (id){
+			clearTimeout(id);
+		};	
+	
+}());
 $(window).load(function(){
 	game.init();
 });
@@ -24,7 +47,42 @@ var game = {
 		$('#levelselectscreen').show('slow');
 	},
 
+	//modo Game
+	mode: "intro",
+	slingshotX:140,
+	slingshotY:280,
+	
+	start: function(){
+		$('.gamelayer').hide();
+		$('#gamecanvas').show();
+		$('#scorescreen').show();
+
+		game.mode = "intro";
+		game.offsetLeft = 0;
+		game.ended = false;
+		game.animationFrame = window.requestAnimationFrame(game.animate, game.canvas);
+	},
+
+	handlePanning: function(){
+		game.offsetLeft++; 
+	},
+	animate:function(){
+		game.handlePanning();
+
+		game.context.drawImage(game.currentLevel.backgroundImage,game.offsetLeft/4,0,640,480,0,0,640,480);
+		game.context.drawImage(game.currentLevel.foregroundImage,game.offsetLeft,0,640,480,0,0,640,480);
+		
+		//honda
+		game.context.drawImage(game.slingshotImage,game.slingshotX - game.offsetLeft, game.slingshotY);
+		game.context.drawImage(game.slingshotFrontImage,game.slingshotX - game.offsetLeft, game.slingshotY);
+
+		if(!game.ended){
+			game.animationFrame = window.requestAnimationFrame(game.animate,game.canvas);
+
+		}
+	}
 }
+
 
 var levels = {
 	data:[
@@ -61,7 +119,24 @@ var levels = {
 	//cargar todos los datos
 	load:function(number){
 
+		game.currentLevel = {number: number,hero: []};
+		game.score = 0;
+		$('#score').html('Score: '+game.score);
+		var level = levels.data[number];
+
+		game.currentLevel.backgroundImage = loader.loadImage("Assets/images/background/" + level.background+".png");
+		game.currentLevel.foregroundImage = loader.loadImage("Assets/images/foreground/" + level.background+".png");
+		game.slingshotImage = loader.loadImage("Assets/images/slingshot.png");
+		game.slingshotFrontImage = loader.loadImage("Assets/images/slingshot-front.png");
+
+		//llamar a game.start() cuando se carguen los assets
+		if(loader.loaded){
+			game.start()
+		}else {
+			loader.onload = game.start;
+		}
 	}
+
 }	
 var loader = {
 	loaded:true,
