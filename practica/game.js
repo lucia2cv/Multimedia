@@ -150,7 +150,9 @@ var levels = {
 		{
 			foreground: 'desert-foreground',
 			background: 'clouds-background',
-			entities: []
+			entities: [
+			{type:"block", name:"wood", x:520, y:375, angle:90},
+			{type:"villian", name:"burguer", x:520, y:200, calories:90}]
 		},
 		//segundo nivel
 		{
@@ -203,6 +205,82 @@ var levels = {
 	}
 
 }	
+
+var entities = {
+	definitions:{
+		"glass":{
+			fullHealth:100,
+			density:2.4,
+			friction:0.4,
+			restitution:0.15,
+		},
+		"wood":{
+			fullHealth:500,
+			density:0.7,
+			friction:0.4,
+			restitution:0.4,
+		},
+		"dirt":{
+			density:3.0,
+			friction:1.5,
+			restitution:0.2,
+		},
+		"burguer":{
+			shape:"circle",
+			fullHealth:40,
+			radius:25,
+			density:1,
+			friction:0.5,
+			restitution:0.4,
+		},
+		"sodacan":{
+			shape:"rectangle",
+			fullHealth:80,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+		"fries":{
+			shape:"rectangle",
+			fullHealth:50,
+			width:40,
+			height:50,
+			density:1,
+			friction:0.5,
+			restitution:0.6,
+		},
+		"apple":{
+			shape:"circle",
+			radius:25,
+			density:1.5,
+			friction:0.5,
+			restitution:0.4,
+		},
+		"orange":{
+			shape:"circle",
+			radius:25,
+			density:1.5,
+			friction:0.5,
+			restitution:0.4,
+		},
+		"strawberry":{
+			shape:"circle",
+			radius:15,
+			density:2.0,
+			friction:0.5,
+			restitution:0.4,
+		}
+	},
+	create:function(entity){
+
+	},
+
+	draw:function(entity,position,angle){
+
+	}
+}
 var loader = {
 	loaded:true,
 	loadedCount: 0, //contador de assets cargados antes
