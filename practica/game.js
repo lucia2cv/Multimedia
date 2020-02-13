@@ -1,3 +1,12 @@
+//declarar objetos comunes
+var b2Vec2 = Box2D.Common.Math.b2Vec2;
+var b2BodyDef = Box2D.Dynamics.b2BodyDef;
+var b2Body = Box2D.Dynamics.b2Body;
+var b2FixtureDef = Box2D.Dynamics.b2FixtureDef;
+var b2World = Box2D.Dynamics.b2World;
+var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
+var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
+var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 //preparar animaciones 
 (function(){
 	var lastTime=0;
@@ -152,7 +161,7 @@ var levels = {
 			background: 'clouds-background',
 			entities: [
 			{type:"block", name:"wood", x:520, y:375, angle:90},
-			{type:"villian", name:"burguer", x:520, y:200, calories:90}]
+			{type:"villian", name:"burger", x:520, y:200, calories:90}]
 		},
 		//segundo nivel
 		{
@@ -225,7 +234,7 @@ var entities = {
 			friction:1.5,
 			restitution:0.2,
 		},
-		"burguer":{
+		"burger":{
 			shape:"circle",
 			fullHealth:40,
 			radius:25,
@@ -274,12 +283,118 @@ var entities = {
 		}
 	},
 	create:function(entity){
+		var definition = entities.definitions[entity.name];
+		if(!definition){
+			console.log("Undefined entity name", entity.name);
+			return;
+		}
+		switch(entity.type){
+			case "block":
+				entity.health = definition.fullHealth;
+				entity.fullHealth = definition.fullHealth;
+				entity.shape = "rectangle";
+				entity.sprite = loader.loadImage("Assets/images/entities/"+entity.name+".png");
+				box2d.createRectangle(entity,definition);
+				break;
+			case "ground":
+				entity.shape = rectangle;
 
+				box2d.createRectangle(entity,definition);
+				break;
+			case "hero": //circulos simples
+			case "villian":
+				entity.health = definition.fullHealth;
+				entity.fullHealth = definition.fullHealth;
+				entity.sprite = loader.loadImage("Assets/images/entities/"+entity.name+ ".png");
+				entity.shape = definition.shape;
+				entity.bounceSound = game.bounceSound;
+				if(definition.shape == "circle"){
+					entity.radius = definition.radius;
+					box2d.createCircle(entity,definition);
+				}else if(definition.shape == "rectangle"){
+					entity.width = definition.width;
+					entity.height = definition.height;
+					box2d.createRectangle(entity,definition);
+				}
+				break;
+			default:
+				console.log("Undefined entity type",entity.type);
+				break;	
+		}
 	},
 
 	draw:function(entity,position,angle){
 
 	}
+}
+var box2d = {
+	scale:30,
+	init:function(){
+		var gravity = new b2Vec2(0,9.8);
+		var allowSleep = true;
+		box2d.world = new b2World(gravity,allowSleep);
+	},
+
+		createRectangle:function(entity,definition){
+			var bodyDef = new b2BodyDef;
+			if(entity.isStatic){
+				bodyDef.type = b2Body.b2_staticBody;
+			}else{
+				bodyDef.type = b2Body.b2_dynamicBody;
+			}
+
+			bodyDef.position.x = entity.x/box2d.scale;
+			bodyDef.position.y = entity.y/box2d.scale;
+
+			if(entity.angle){
+				bodyDef.angle = Math.PI*entity.angle/180;
+			}
+
+			var fixtureDef = new b2FixtureDef;
+			fixtureDef.density = definition.density;
+			fixtureDef.friction = definition.friction;
+			fixtureDef.restitution = definition.restitution;
+
+			fixtureDef.shape = new b2PolygonShape;
+			fixtureDef.shape.SetAsBox(entity.width/2/box2d.scale.entity.height/2/box2d.scale);
+
+			var body = box2d.world.CreateBody(bodyDef);
+			body.SetUserdata(entity);
+
+			var fixture = body.CreateFixture(fixtureDef);
+			return body;
+		},
+
+		createCircle:function(entity,definition){
+			var bodyDef = new b2BodyDef;
+			if(entity.isStatic){
+				bodyDef.type = b2Body.b2_staticBody;
+			}else{
+				bodyDef.type = b2Body.b2_dynamicBody;
+			}
+
+			bodyDef.position.x = entity.x/box2d.scale;
+			bodyDef.position.y = entity.y/box2d.scale;
+
+			if(entity.angle){
+				bodyDef.angle = Math.PI*entity.angle/180;
+			}
+
+			var fixtureDef = new b2FixtureDef;
+			fixtureDef.density = definition.density;
+			fixtureDef.friction = definition.friction;
+			fixtureDef.restitution = definition.restitution;
+
+			fixtureDef.shape = new b2CircleShape(entity.radius/box2d.scale);
+
+			var body = box2d.world.CreateBody(bodyDef);
+			body.SetUserdata(entity);
+
+			var fixture = body.CreateFixture(fixtureDef);
+			return body;
+
+		},
+	
 }
 var loader = {
 	loaded:true,
