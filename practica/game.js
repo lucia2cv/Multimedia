@@ -30,9 +30,17 @@ var game = {
 	init: function(){
 		//inicializar objetos
 		levels.init();
-
 		//inicializar assets
 		loader.init();
+		game.backgroundMusic = loader.loadSound('Assets/audio/gurdonark-kindergarten');
+		game.slingshotReleasedSound = loader.loadSound('Assets/audio/released');
+		game.bounceSound = loader.loadSound('Assets/audio/bounce');
+		game.breakSound = {
+			"glass":loader.loadSound('Assets/audio/glassbreak'),
+			"wood":loader.loadSound('Assets/audio/woodbreak')
+		};
+		mouse.init();
+
 		//ocultar todas las capas del juego menos la pantalla de inicio
 		$('.gamelayer').hide();
 		$('#gamestartscreen').show();
@@ -62,13 +70,32 @@ var game = {
 		game.ended = false;
 		game.animationFrame = window.requestAnimationFrame(game.animate, game.canvas);
 	},
+	maxSpeed:3,
+	minOffset:0,
+	maxOffset:300,
+	offsetLeft:0,
+	score:0,
+
+	panTo:function(newCenter){
+		if(Math.abs(newCenter-game.offsetLeft-game.canvas.width/4)>0
+			&& game.offsetLeft<= game.maxOffset && game.offsetLeft >= game.minOffset){
+
+			var deltaX = Math.round((newCenter-game.offsetLeft-game.canvas.width/4)/2);
+			if(deltaX && Math.abs(deltaX)>game.maxSpeed){
+				deltaX = game.maxSpeed*Math.abs(deltaX)/(deltaX);
+			}
+			game.offsetLeft +=deltaX;
+		}else{}
+	}
 
 	handlePanning: function(){
-		game.offsetLeft++; 
+		game.offsetLeft++; //mantener la panoramica a la derecha
 	},
 	animate:function(){
+		//anima fondo
 		game.handlePanning();
-
+		//anima personajes
+		//dibuja fondo con desplazamiento
 		game.context.drawImage(game.currentLevel.backgroundImage,game.offsetLeft/4,0,640,480,0,0,640,480);
 		game.context.drawImage(game.currentLevel.foregroundImage,game.offsetLeft,0,640,480,0,0,640,480);
 		
@@ -82,7 +109,6 @@ var game = {
 		}
 	}
 }
-
 
 var levels = {
 	data:[
@@ -119,16 +145,21 @@ var levels = {
 	//cargar todos los datos
 	load:function(number){
 
-		game.currentLevel = {number: number,hero: []};
+		game.currentLevel = {number:number,hero:[]};
 		game.score = 0;
 		$('#score').html('Score: '+game.score);
 		var level = levels.data[number];
 
-		game.currentLevel.backgroundImage = loader.loadImage("Assets/images/background/" + level.background+".png");
-		game.currentLevel.foregroundImage = loader.loadImage("Assets/images/foreground/" + level.background+".png");
+		game.currentLevel.backgroundImage = loader.loadImage("Assets/images/backgrounds/" + level.background+".png");
+		game.currentLevel.foregroundImage = loader.loadImage("Assets/images/backgrounds/" + level.foreground+".png");
 		game.slingshotImage = loader.loadImage("Assets/images/slingshot.png");
 		game.slingshotFrontImage = loader.loadImage("Assets/images/slingshot-front.png");
 
+		// Cargar todas la entidades
+		for (var i = level.entities.length - 1; i >= 0; i--){	
+			var entity = level.entities[i];
+			entities.create(entity);			
+		};
 		//llamar a game.start() cuando se carguen los assets
 		if(loader.loaded){
 			game.start()
@@ -141,7 +172,7 @@ var levels = {
 var loader = {
 	loaded:true,
 	loadedCount: 0, //contador de assets cargados antes
-	totalCount:0, //assets que es necesario cargar
+	totalCount:0, // numero total assets que es necesario cargar
 
 	init:function(){
 
@@ -152,6 +183,7 @@ var loader = {
 			oggSupport = "" != audio.canPlayType('audio/ogg; codecs="vorbis"');
 
 		}else{
+			//etiqueta de audio no soportada
 			mp3Support = false;
 			oggSupport = false;
 		}
@@ -169,13 +201,13 @@ var loader = {
 		return image;
 	},
 
-	soundFileExtn: ".ogg",
+	soundFileExtn:".ogg",
 	loadSound: function(url){
 		this.totalCount++;
 		this.loaded = false;
 		$('#loadingscreen').show();
 		var audio = new Audio();
-		audio.src = url +loader.soundFileExtn;
+		audio.src = url+loader.soundFileExtn;
 		audio.addEventListener("canplaythrough", loader.itemLoaded, false);
 		return audio;
 	},
@@ -192,5 +224,36 @@ var loader = {
 				loader.onload = undefined;
 			}
 		}
+	}
+}
+var mouse = {
+	x:0,
+	y:0,
+	down:false,
+	init:function(){
+		$('#gamecanvas').mousemove(mouse.mousemovehandler);
+		$('#gamecanvas').mousedown(mouse.mousedownhandler);
+		$('#gamecanvas').mouseup(mouse.mouseuphandler);
+		$('#gamecanvas').mouseout(mouse.mouseouthandler);
+	},
+	mousemovehandler:function(ev){
+		var offset = $('#gamrcanvas').offset();
+		mouse.x = ev.pageX - offset.left;
+		mouse.y = ev.pageY - offset.top;
+
+		if(mouse.down){
+			mouse.dragging = true;
+		}
+	},
+	mousedownhandler:function(ev){
+		mouse.down = true;
+		mouse.downX = mouse.x;
+		mose.downY = mouse.y;
+		ev.originalEvent.preventDefault();
+
+	},
+	mouseuphandler:function(ev){
+		mouse.down = false;
+		mose.dragging = false;
 	}
 }
