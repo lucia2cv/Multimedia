@@ -85,11 +85,45 @@ var game = {
 				deltaX = game.maxSpeed*Math.abs(deltaX)/(deltaX);
 			}
 			game.offsetLeft +=deltaX;
-		}else{}
-	}
+		}else{
+			return true;
+		}
+		if(game.offsetLeft < game.minOffset){
+			game.offsetLeft = game.maxOffset;
+			return true;
+		}
+		return false;
+	},
 
 	handlePanning: function(){
-		game.offsetLeft++; //mantener la panoramica a la derecha
+		if(game.mode == "intro"){
+			if(game.panTo(700)){
+				game.mode = "load-next-hero";
+			}
+		}
+		if(game.mode == "wait-for-firing"){
+			if(mouse.dragging){
+				game.panTo(mouse.X + game.offsetLeft)
+			}else{
+
+				game.panTo(game.slingshotX);
+			}
+		}
+		if(game.mode == "load-next-hero"){
+			//TO DO:
+			//comprobar si hay villanos vivos
+			//comprobar si quedan heroes
+			//cargar heroe y fijar a modo espera a disparar
+			game.mode ="wait-for-firing";
+		}
+		if(game.mode == "firing"){
+			game.panTo(fame.slingshotX);
+		}
+		if(game.mode == "fired"){
+			//TO DO:
+			//Hacer barrido hasta donde se encuentre el heroe
+
+		}
 	},
 	animate:function(){
 		//anima fondo
