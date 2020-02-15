@@ -14,7 +14,7 @@
 			<canvas id = "gamecanvas" width="640" height="480" class="gamelayer"></canvas>
 
 			<div id="scorescreen" class="gamelayer">
-				<img id = "togglemusic" src="Assets/images/icons/sound.png">
+				<img id = "togglemusic" src="Assets/images/icons/sound.png" onclick="game.toggleBackgroundMusic();">
 				<img src="Assets/images/icons/prev.png">
 				<span id="score">Score:0</span>
 			</div>
@@ -41,5 +41,6 @@
 			</div>
 
 		</div>
+		<canvas id="debugcanvas" width="1000" height="480" style="border: 1px solid black;"></canvas>
 	</body>
 </html>
