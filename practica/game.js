@@ -68,7 +68,7 @@ var game = {
 		var toggleImage = $("#togglemusic")[0];	
 		toggleImage.src="Assets/images/icons/nosound.png";	
 		game.backgroundMusic.pause();
-		game.backgroundMusic.currentTime = 0; // Ir al comienzo de la canciÃ³n
+		game.backgroundMusic.currentTime = 0; // Ir al comienzo de la canción
 	},
 	toggleBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];
@@ -83,6 +83,18 @@ var game = {
 	showLevelScreen:function(){
 		$('#gamestartscreen').hide();
 		$('#levelselectscreen').show('slow');
+		$('#endingscreen').hide();
+	},
+
+	restartLevel:function(){
+		window.cancelAnimationFrame(game.animationFrame);		
+		game.lastUpdateTime = undefined;
+		levels.load(game.currentLevel.number);
+	},
+	startNextLevel:function(){
+		window.cancelAnimationFrame(game.animationFrame);		
+		game.lastUpdateTime = undefined;
+		levels.load(game.currentLevel.number+1);
 	},
 
 	//modo Game
@@ -292,6 +304,12 @@ var game = {
 		// Dibujar todos los cuerpos
 		game.drawAllBodies();
 
+		//dibujar la banda
+		if(game.mode == "wait-for-firing"|| game.mode == "firing"){
+			game.drawSlingshotBand();
+		}
+
+		//dibujar frente de la honda
 		game.context.drawImage(game.slingshotFrontImage,game.slingshotX - game.offsetLeft, game.slingshotY);
 
 		if(!game.ended){
@@ -322,7 +340,36 @@ var game = {
 				}	
 			}
 		}
-	}
+	},
+
+	drawSlingshotBand: function(){
+		game.context.strokeStyle = "rgb(68,31,11)";
+		game.context.lineWidth = 6;
+		//angulo
+
+		var radius = game.currentHero.GetUserData().radius;
+		var heroX = game.currentHero.GetPosition().x*box2d.scale;
+		var heroY = game.currentHero.GetPosition().y*box2d.scale;			
+		var angle = Math.atan2(game.slingshotY+25-heroY,game.slingshotX+50-heroX);
+
+		var heroFarEdgeX = heroX - radius * Math.cos(angle);
+		var heroFarEdgeY = heroY - radius * Math.sin(angle);
+
+		game.context.beginPath();
+		game.context.moveTo(game.slingshotX+50-game.offsetLeft, game.slingshotY+25);
+
+		game.context.lineTo(heroX-game.offsetLeft,heroY);
+		game.context.stroke();
+
+		entities.draw(game.currentHero.GetUserData(),game.currentHero.GetPosition(),game.currentHero.GetAngle());
+
+		game.context.beginPath();		
+		game.context.moveTo(heroFarEdgeX-game.offsetLeft,heroFarEdgeY);
+	
+		game.context.lineTo(game.slingshotX-game.offsetLeft +10,game.slingshotY+30)
+		game.context.stroke();
+
+	},
 }
 
 var levels = {
@@ -499,11 +546,13 @@ var entities = {
 				entity.fullHealth = definition.fullHealth;
 				entity.shape = "rectangle";
 				entity.sprite = loader.loadImage("Assets/images/entities/"+entity.name+".png");
+
+				entity.breakSound = game.breakSound [entity.name];
 				box2d.createRectangle(entity,definition);
 				break;
 			case "ground":
+			
 				entity.shape = "rectangle";
-
 				box2d.createRectangle(entity,definition);
 				break;
 			case "hero": //circulos simples
@@ -571,6 +620,33 @@ var box2d = {
 		debugDraw.SetLineThickness(1.0);
 		debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);	
 		box2d.world.SetDebugDraw(debugDraw);
+
+		var listener = new Box2D.Dynamics.b2ContactListener;
+		listener.PostSolve = function(contact,impulse){
+			var body1 = contact.GetFixtureA().GetBody();
+			var body2 = contact.GetFixtureB().GetBody();
+			var entity1 = body1.GetUserData();
+			var entity2 = body2.GetUserData();
+
+			var impulseAlongNormal = Math.abs(impulse.normalImpulses[0]);
+			if(impulseAlongNormal > 5){
+				if(entity1.health){
+					entity1.health -= impulseAlongNormal;
+				}
+				if(entity2.health){
+					entity2.health -= impulseAlongNormal;
+				}
+
+				if(entity1.bounceSound){
+					entity1.bounceSound.play();
+				}
+				if(entity2.bounceSound){
+					entity2.bounceSound.play();
+				}
+			}
+
+		};
+		box2d.world.SetContactListener(listener);
 	},
 	step:function(timeStep){
 		// velocidad de las iteraciones = 8
