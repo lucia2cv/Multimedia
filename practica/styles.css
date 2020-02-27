@@ -1,7 +1,7 @@
 #gamecontainer{
 	width: 640px;
 	height: 480px;
-	background: url(Assets/images/splashscreen.png);
+	background: url(Assets/images/fondo.jpg);
 	border: 1px solid black;
 }
 .gamelayer{
