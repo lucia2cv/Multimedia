@@ -376,8 +376,8 @@ var levels = {
 	data:[
 		//primer nivel
 		{
-			foreground: 'desert-foreground',
-			background: 'clouds-background',
+			foreground: 'moonForeground',
+			background: 'aquarius',
 			entities: [
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
@@ -396,8 +396,8 @@ var levels = {
 		},
 		//segundo nivel
 		{
-			foreground: 'desert-foreground',
-			background: 'clouds-background',
+			foreground: 'venusPrueba',
+			background: 'libraAzul',
 			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 			{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
 

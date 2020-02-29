@@ -15,12 +15,12 @@
 
 			<div id="scorescreen" class="gamelayer">
 				<img id = "togglemusic" src="Assets/images/icons/soundOn.png" onclick="game.toggleBackgroundMusic();">
-				<img src="Assets/images/icons/prev.png" onclick="game.restartLevel();">
+				<img src="Assets/images/icons/flechaDobleBack.png" onclick="game.restartLevel();">
 				<span id="score">Score:0</span>
 			</div>
 
 			<div id="gamestartscreen" >
-				<img id ="botonplay" src="Assets/images/icons/newPlay.png" alt="Play Game" onclick="game.showLevelScreen();"><br>
+				<img id ="botonplay" src="Assets/images/icons/playNuevo.png" alt="Play Game" onclick="game.showLevelScreen();"><br>
 				<img id ="botonsettings" src="Assets/images/icons/newSettings.png" alt="Settings">
 			</div>
 
@@ -34,9 +34,9 @@
 			<div id="endingscreen" class="gamelayer">
 				<div>
 					<p id="endingmessage">The level is over message</p>
-					<p id="playcurrentlevel" onclick="game.restartLevel();"><img src="Assets/images/icons/prev.png"> Replay Current Level </p>
-					<p id="playnextlevel" onclick="game.startNextLevel();"><img src="Assets/images/icons/next.png"> Play Next Level </p>
-					<p id="showLevelScreen" onclick="game.showLevelScreen();"><img src="Assets/images/icons/return.png"> Return to Level Screen </p>
+					<p id="playcurrentlevel" onclick="game.restartLevel();"><img src="Assets/images/icons/flechaDobleBack.png"> Replay Current Level </p>
+					<p id="playnextlevel" onclick="game.startNextLevel();"><img src="Assets/images/icons/flechaDobleForward.png"> Play Next Level </p>
+					<p id="showLevelScreen" onclick="game.showLevelScreen();"><img src="Assets/images/icons/flechaReturn.png"> Return to Level Screen </p>
 				</div>
 			</div>
 
