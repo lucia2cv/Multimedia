@@ -206,6 +206,7 @@ var game = {
 
 	 if (game.mode == "fired"){		
 		 //Vista panorÃ¡mica donde el hÃ©roe se encuentra actualmente...
+		 console.log(game.currentHero);
 		 var heroX = game.currentHero.GetPosition().x*box2d.scale;
 		 game.panTo(heroX);
 
@@ -757,7 +758,7 @@ var loader = {
 	itemLoaded:function(){
 		loader.loadedCount++;
 		$('#loadingmessage').html('Loaded ' + loader.loadedCount+' of '+loader.totalCount);
-		if ((loader.loadedCount === loader.totalCount)) { 
+		if ((loader.loadedCount >= loader.totalCount)) { 
 
 			loader.loaded = true;
 			$('#loadingscreen').hide();
