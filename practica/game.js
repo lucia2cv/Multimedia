@@ -148,7 +148,9 @@ var game = {
 		for (var body = box2d.world.GetBodyList(); body; body = body.GetNext()) {
 			var entity = body.GetUserData();
 			if(entity){
-				if(entity.type == "hero"){				
+				if(entity.type == "hero"){	
+					body.destroyState = false;
+					body.destroyFinished = false;			
 					game.heroes.push(body);			
 				} else if (entity.type =="villain"){
 					game.villains.push(body);
@@ -206,12 +208,18 @@ var game = {
 
 	 if (game.mode == "fired"){		
 		 //Vista panorÃ¡mica donde el hÃ©roe se encuentra actualmente...
-		 console.log(game.currentHero);
 		 var heroX = game.currentHero.GetPosition().x*box2d.scale;
 		 game.panTo(heroX);
 
-		 //Y esperar hasta que deja de moverse o estÃ¡ fuera de los lÃ­mites
-		 if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width ){
+		//comprobar si va muy despacio para iniciar la cuenta atras de destrucción
+		if(game.currentHero.m_linearVelocity.x > -1 && game.currentHero.m_linearVelocity.x < 1 && game.currentHero.m_linearVelocity.y > -1 && game.currentHero.m_linearVelocity.y < 1 && !game.currentHero.destroyState){
+			game.currentHero.destroyState = true;
+			console.log("Cuenta atrás");
+			setTimeout(game.destroySlowHero,3000,game.currentHero);
+		}
+
+		 //Y esperar hasta que deja de moverse o estÃ¡ fuera de los lÃ­mites o se mueva muy despacio demasiado tiempo
+		 if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width || game.currentHero.destroyFinished ){
 			 // Luego borra el viejo hÃ©roe
 			 box2d.world.DestroyBody(game.currentHero);
 			 game.currentHero = undefined;
@@ -259,6 +267,11 @@ var game = {
 			 }			 
 		 }
 		 
+	},
+
+	destroySlowHero:function(hero){
+		hero.destroyFinished = true;
+		console.log("destruido");
 	},
 
 	showEndingScreen:function(){
