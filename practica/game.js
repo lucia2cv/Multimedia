@@ -41,7 +41,7 @@ var game = {
 		levels.init();
 		//inicializar assets
 		loader.init();
-		game.backgroundMusic = loader.loadSound('Assets/audio/gurdonark-kindergarten');
+		game.backgroundMusic = loader.loadSound('Assets/audio/backgroundMusic');
 		game.slingshotReleasedSound = loader.loadSound('Assets/audio/released');
 		game.bounceSound = loader.loadSound('Assets/audio/bounce');
 		game.breakSound = {
