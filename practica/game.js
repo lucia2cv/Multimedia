@@ -462,8 +462,36 @@ var levels = {
 			{type:"hero", name:"meteor2",x:80,y:405},
 			{type:"hero", name:"meteor1",x:140,y:405}
 		]
-		}
+		},
+		//nivel 4
+		{
+			foreground: 'scifiLandscape',
+			background: 'cassiopeia',
+			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
+			{type:"ground", name:"metal", x:185,y:390,width:30,height:80,isStatic:true},
 
+			{type:"block", name:"metal", x:495,y:380,angle:90,width:103,height:25},
+			{type:"block", name:"glass", x:405,y:380,angle:90,width:103,height:25},
+			{type:"block", name:"metal", x:455,y:356,width:165,height:25},
+
+			{type:"block", name:"glass", x:450, y:280,angle:90,width:103,height:25},
+			
+			{type:"block", name:"metal", x:608, y:380,angle:90,width:230,height:25},
+			{type:"block", name:"glass", x:540, y:225, width:250,height:25},
+
+			{type:"block", name:"glass", x:700,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"glass", x:760,y:380,angle:90,width:100,height:25},
+
+
+			{type:"villain", name:"jupiter",x:550,y:390},
+			{type:"villain", name:"neptune",x:760,y:280},
+			{type:"villain", name:"tierra",x:400,y:280},
+
+			{type:"hero", name:"meteor1",x:30,y:415},
+			{type:"hero", name:"meteor2",x:80,y:405},
+			{type:"hero", name:"meteor3",x:140,y:405}
+		]
+		},
 	],
 	// inicializar pantalla de seleccion
 
