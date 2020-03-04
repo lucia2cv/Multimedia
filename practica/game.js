@@ -211,6 +211,21 @@ var game = {
 		 var heroX = game.currentHero.GetPosition().x*box2d.scale;
 		 game.panTo(heroX);
 
+		 var entity = game.currentHero.GetUserData();
+		if( entity.name == "meteor2"){
+			if(mouse.down && !entity.propulsed){
+				entity.propulsed = true;
+				var power = 100;
+				var x = game.currentHero.m_linearVelocity.x*5;
+				var y = game.currentHero.m_linearVelocity.y*5;
+				//(x > 0)? x += power : x -= power;
+				//(y > 0)? y += power : y -= power;
+				var propulsion = new b2Vec2(x,y);
+				game.currentHero.ApplyImpulse(propulsion,game.currentHero.GetPosition());
+				console.log(game.currentHero);
+			}
+		
+		}
 		//comprobar si va muy despacio para iniciar la cuenta atras de destrucción
 		if(game.currentHero.m_linearVelocity.x > -1 && game.currentHero.m_linearVelocity.x < 1 && game.currentHero.m_linearVelocity.y > -1 && game.currentHero.m_linearVelocity.y < 1 && !game.currentHero.destroyState){
 			game.currentHero.destroyState = true;
@@ -430,8 +445,8 @@ var levels = {
 			{type:"villain", name:"jupiter",x:765,y:405,calories:150},
 
 			{type:"hero", name:"meteor3",x:30,y:415},
-			{type:"hero", name:"meteor2",x:80,y:405},
-			{type:"hero", name:"meteor1",x:140,y:405}
+			{type:"hero", name:"meteor1",x:80,y:405},
+			{type:"hero", name:"meteor2",x:140,y:405}
 		]
 		},
 		//nivel 3
@@ -592,7 +607,7 @@ var entities = {
 			radius:25,
 			density:1.5,
 			friction:0.5,
-			restitution:0.4,
+			restitution:0.4
 		},
 		"meteor3":{
 			shape:"circle",
@@ -609,6 +624,10 @@ var entities = {
 			console.log("Undefined entity name", entity.name);
 			return;
 		}
+		//inicializar propulsion a desactivado
+		if(entity.name == "meteor2"){
+			entity.propulsed = false;
+		}
 		switch(entity.type){
 			case "block":
 				entity.health = definition.fullHealth;
@@ -624,7 +643,7 @@ var entities = {
 				entity.shape = "rectangle";
 				box2d.createRectangle(entity,definition);
 				break;
-			case "hero": //circulos simples
+			case "hero": 
 			case "villain":
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
