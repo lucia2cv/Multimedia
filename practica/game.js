@@ -509,24 +509,24 @@ var levels = {
 		},
 		//level 5
 		{
-			foreground: 'scifiLandscape',
-			background: 'cassiopeia',
+			foreground: 'paisajePlantas',
+			background: 'sagitario',
 			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 			{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
 
-			{type:"block", name:"cristales", x:410,y:310,angle:90,width:250,height:25},
-			{type:"block", name:"cristales", x:700,y:310,angle:90,width:250,height:25},
-			{type:"block", name:"cristales", x:553,y:170,width:445,height:25},
+			{type:"block", name:"cristales", x:530,y:310,angle:90,width:250,height:25},
+			{type:"block", name:"cristales", x:820,y:310,angle:90,width:250,height:25},
+			{type:"block", name:"cristales", x:655,y:170,width:445,height:25},
 
-			{type:"block", name:"panel", x:530,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"cristales", x:605,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"panel", x:560,y:335,width:160,height:25},
+			{type:"block", name:"panel", x:625,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:710,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:670,y:340,width:160,height:25},
 
-			{type:"block", name:"panel", x:590, y:290, angle:90, width:100, height:25},
+			{type:"block", name:"panel", x:660, y:290, angle:90, width:100, height:25},
 
-			{type:"villain", name:"neptune",x:545,y:290},
-			{type:"villain", name:"jupiter",x:555,y:400},
-			{type:"villain", name:"tierra",x:735,y:410},
+			{type:"villain", name:"neptune",x:640,y:290},
+			{type:"villain", name:"jupiter",x:655,y:400},
+			{type:"villain", name:"tierra",x:855,y:410},
 
 			{type:"hero", name:"meteor1",x:30,y:415},
 			{type:"hero", name:"meteor2",x:80,y:405},
@@ -536,8 +536,8 @@ var levels = {
 
 		//level 6
 		{
-			foreground: 'scifiLandscape',
-			background: 'cassiopeia',
+			foreground: 'blueIce',
+			background: 'capricorn',
 			entities: [
 			{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 			{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
