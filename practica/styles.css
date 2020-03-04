@@ -19,19 +19,28 @@
 	margin: 10px;
 	cursor: pointer;
 }
+#logo{
+	display: block;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	margin-top: 10% !important;
+	width: 400px;
+	height: 150px;
+}
+
 #botonplay{
 	display: block;
- 	margin-left: 35% !important;
-	margin-right: 35% !important;
-	margin-top: 40% !important; 
+ 	margin-left: auto !important;
+	margin-right: auto !important;
+	margin-top: 10% !important;
 	width: 125px;
 	height: 35px;
 	
 }
 #botonsettings{
 	display: block;
- 	margin-left: 35% !important;
-	margin-right: 35% !important;
+ 	margin-left: auto !important;
+	margin-right: auto !important;
 	width: 125px;
 	height: 35px;
 	
