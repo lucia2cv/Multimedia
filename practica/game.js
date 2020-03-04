@@ -45,8 +45,8 @@ var game = {
 		game.slingshotReleasedSound = loader.loadSound('Assets/audio/released');
 		game.bounceSound = loader.loadSound('Assets/audio/bounce');
 		game.breakSound = {
-			"glass":loader.loadSound('Assets/audio/glassbreak'),
-			"metal":loader.loadSound('Assets/audio/woodbreak')
+			"cristales":loader.loadSound('Assets/audio/glassbreak'),
+			"panel":loader.loadSound('Assets/audio/woodbreak')
 		};
 		mouse.init();
 
@@ -409,14 +409,14 @@ var levels = {
 			background: 'aquarius',
 			entities: [
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
-				{type:"ground", name:"metal", x:185,y:390,width:30,height:80,isStatic:true},
+				{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
 	
-				{type:"block", name:"metal", x:520,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"glass", x:520,y:280,angle:90,width:100,height:25},								
+				{type:"block", name:"panel", x:520,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"cristales", x:520,y:280,angle:90,width:100,height:25},								
 				{type:"villain", name:"neptune",x:520,y:205,calories:590},
 	
-				{type:"block", name:"metal", x:620,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"glass", x:620,y:280,angle:90,width:100,height:25},								
+				{type:"block", name:"panel", x:620,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"cristales", x:620,y:280,angle:90,width:100,height:25},								
 				{type:"villain", name:"tierra", x:620,y:205,calories:420},				
 	
 				{type:"hero", name:"meteor2",x:80,y:405},
@@ -428,17 +428,17 @@ var levels = {
 			foreground: 'mars',
 			background: 'libraAzul',
 			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
-			{type:"ground", name:"metal", x:185,y:390,width:30,height:80,isStatic:true},
+			{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
 
-			{type:"block", name:"metal", x:820,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"metal", x:720,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"metal", x:620,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"glass", x:670,y:317.5,width:100,height:25},
-			{type:"block", name:"glass", x:770,y:317.5,width:100,height:25},				
+			{type:"block", name:"panel", x:820,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:720,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:620,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:670,y:317.5,width:100,height:25},
+			{type:"block", name:"cristales", x:770,y:317.5,width:100,height:25},				
 
-			{type:"block", name:"glass", x:670,y:255,angle:90,width:100,height:25},
-			{type:"block", name:"glass", x:770,y:255,angle:90,width:100,height:25},
-			{type:"block", name:"metal", x:720,y:192.5,width:100,height:25},	
+			{type:"block", name:"cristales", x:670,y:255,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:770,y:255,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:720,y:192.5,width:100,height:25},	
 
 			{type:"villain", name:"neptune",x:715,y:155,calories:590},
 			{type:"villain", name:"tierra",x:670,y:405,calories:420},
@@ -454,20 +454,20 @@ var levels = {
 			foreground: 'ice',
 			background: 'gemini',
 			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
-			{type:"ground", name:"metal", x:185,y:390,width:30,height:80,isStatic:true},
+			{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
 
-			{type:"block", name:"metal", x:830,y:380,width:25,height:100},
-			{type:"block", name:"metal", x:725.5,y:380,width:25,height:100},
-			{type:"block", name:"metal", x:780,y:320,angle:90,width:25,height:250},
+			{type:"block", name:"panel", x:830,y:380,width:25,height:100},
+			{type:"block", name:"panel", x:725.5,y:380,width:25,height:100},
+			{type:"block", name:"panel", x:780,y:320,angle:90,width:25,height:250},
 
-			{type:"block", name:"glass", x:738,y:295,angle:90,width:100,height:25},
-			{type:"block", name:"glass", x:810, y:295,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:738,y:295,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:810, y:295,angle:90,width:100,height:25},
 			
-			{type:"block", name:"glass", x:550,y:380,angle:90,width:225,height:25},
-			{type:"block", name:"metal", x:447, y:380,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:550,y:380,angle:90,width:225,height:25},
+			{type:"block", name:"panel", x:447, y:380,angle:90,width:100,height:25},
 
-			{type:"block", name:"glass", x:650, y:200,angle:90,width:25,height:400},
-			{type:"block", name:"metal", x:451.3, y:338,angle:90,width:25,height:169},
+			{type:"block", name:"cristales", x:650, y:200,angle:90,width:25,height:400},
+			{type:"block", name:"panel", x:451.3, y:338,angle:90,width:25,height:169},
 	
 			{type:"villain", name:"tierra",x:765,y:380,calories:150},
 			{type:"villain", name:"neptune",x:500,y:380,calories:420},
@@ -483,19 +483,48 @@ var levels = {
 			foreground: 'scifiLandscape',
 			background: 'cassiopeia',
 			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
-			{type:"ground", name:"metal", x:185,y:390,width:30,height:80,isStatic:true},
+			{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
 
-			{type:"block", name:"metal", x:495,y:380,angle:90,width:103,height:25},
-			{type:"block", name:"glass", x:405,y:380,angle:90,width:103,height:25},
-			{type:"block", name:"metal", x:455,y:356,width:165,height:25},
+			{type:"block", name:"panel", x:495,y:380,angle:90,width:103,height:25},
+			{type:"block", name:"cristales", x:405,y:380,angle:90,width:103,height:25},
+			{type:"block", name:"panel", x:455,y:356,width:165,height:25},
 
-			{type:"block", name:"glass", x:450, y:280,angle:90,width:103,height:25},
+			{type:"block", name:"cristales", x:450, y:280,angle:90,width:103,height:25},
 			
-			{type:"block", name:"metal", x:608, y:380,angle:90,width:230,height:25},
-			{type:"block", name:"glass", x:540, y:225, width:250,height:25},
+			{type:"block", name:"panel", x:608, y:380,angle:90,width:230,height:25},
+			{type:"block", name:"cristales", x:540, y:225, width:250,height:25},
 
-			{type:"block", name:"glass", x:700,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"glass", x:760,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:700,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:760,y:380,angle:90,width:100,height:25},
+
+
+			{type:"villain", name:"jupiter",x:550,y:390},
+			{type:"villain", name:"neptune",x:760,y:280},
+			{type:"villain", name:"tierra",x:400,y:280},
+
+			{type:"hero", name:"meteor1",x:30,y:415},
+			{type:"hero", name:"meteor2",x:80,y:405},
+			{type:"hero", name:"meteor3",x:140,y:405}
+		]
+		},
+		//level 5
+		{
+			foreground: 'scifiLandscape',
+			background: 'cassiopeia',
+			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
+			{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
+
+			{type:"block", name:"panel", x:495,y:380,angle:90,width:103,height:25},
+			{type:"block", name:"cristales", x:405,y:380,angle:90,width:103,height:25},
+			{type:"block", name:"panel", x:455,y:356,width:165,height:25},
+
+			{type:"block", name:"cristales", x:450, y:280,angle:90,width:103,height:25},
+			
+			{type:"block", name:"panel", x:608, y:380,angle:90,width:230,height:25},
+			{type:"block", name:"cristales", x:540, y:225, width:250,height:25},
+
+			{type:"block", name:"cristales", x:700,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:760,y:380,angle:90,width:100,height:25},
 
 
 			{type:"villain", name:"jupiter",x:550,y:390},
@@ -553,13 +582,13 @@ var levels = {
 
 var entities = {
 	definitions:{
-		"glass":{
+		"cristales":{
 			fullHealth:100,
 			density:2.4,
 			friction:0.4,
 			restitution:0.15,
 		},
-		"metal":{
+		"panel":{
 			fullHealth:500,
 			density:0.7,
 			friction:0.4,
