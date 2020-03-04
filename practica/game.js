@@ -456,21 +456,21 @@ var levels = {
 			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 			{type:"ground", name:"metal", x:185,y:390,width:30,height:80,isStatic:true},
 
-			{type:"block", name:"metal", x:830,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"metal", x:725.5,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"metal", x:830,y:380,width:25,height:100},
+			{type:"block", name:"metal", x:725.5,y:380,width:25,height:100},
 			{type:"block", name:"metal", x:780,y:320,angle:90,width:25,height:250},
 
-			{type:"block", name:"glass", x:738,y:295,width:25,height:100},
-			{type:"block", name:"glass", x:810, y:295,width:25,height:100},
+			{type:"block", name:"glass", x:738,y:295,angle:90,width:100,height:25},
+			{type:"block", name:"glass", x:810, y:295,angle:90,width:100,height:25},
 			
-			{type:"block", name:"glass", x:550,y:295,width:25,height:225},
-			{type:"block", name:"metal", x:443, y:295,width:25,height:100},
+			{type:"block", name:"glass", x:550,y:380,angle:90,width:225,height:25},
+			{type:"block", name:"metal", x:447, y:380,angle:90,width:100,height:25},
 
-			{type:"block", name:"metal", x:650, y:200,angle:90,width:25,height:400},
-			{type:"block", name:"metal", x:462, y:250,angle:90,width:25,height:165},
+			{type:"block", name:"glass", x:650, y:200,angle:90,width:25,height:400},
+			{type:"block", name:"metal", x:451.3, y:338,angle:90,width:25,height:169},
 	
-			{type:"villain", name:"tierra",x:765,y:405,calories:150},
-			{type:"villain", name:"neptune",x:500,y:405,calories:420},
+			{type:"villain", name:"tierra",x:765,y:380,calories:150},
+			{type:"villain", name:"neptune",x:500,y:380,calories:420},
 			{type:"villain", name:"jupiter",x:765,y:295,calories:150},
 
 			{type:"hero", name:"meteor3",x:30,y:415},
