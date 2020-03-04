@@ -514,22 +514,19 @@ var levels = {
 			entities: [{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 			{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
 
-			{type:"block", name:"panel", x:495,y:380,angle:90,width:103,height:25},
-			{type:"block", name:"cristales", x:405,y:380,angle:90,width:103,height:25},
-			{type:"block", name:"panel", x:455,y:356,width:165,height:25},
+			{type:"block", name:"cristales", x:410,y:310,angle:90,width:250,height:25},
+			{type:"block", name:"cristales", x:700,y:310,angle:90,width:250,height:25},
+			{type:"block", name:"cristales", x:553,y:170,width:445,height:25},
 
-			{type:"block", name:"cristales", x:450, y:280,angle:90,width:103,height:25},
-			
-			{type:"block", name:"panel", x:608, y:380,angle:90,width:230,height:25},
-			{type:"block", name:"cristales", x:540, y:225, width:250,height:25},
+			{type:"block", name:"panel", x:530,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:605,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:560,y:335,width:160,height:25},
 
-			{type:"block", name:"cristales", x:700,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"cristales", x:760,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:590, y:290, angle:90, width:100, height:25},
 
-
-			{type:"villain", name:"jupiter",x:550,y:390},
-			{type:"villain", name:"neptune",x:760,y:280},
-			{type:"villain", name:"tierra",x:400,y:280},
+			{type:"villain", name:"neptune",x:545,y:290},
+			{type:"villain", name:"jupiter",x:555,y:400},
+			{type:"villain", name:"tierra",x:735,y:410},
 
 			{type:"hero", name:"meteor1",x:30,y:415},
 			{type:"hero", name:"meteor2",x:80,y:405},
