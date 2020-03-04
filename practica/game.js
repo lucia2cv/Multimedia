@@ -498,9 +498,9 @@ var levels = {
 			{type:"block", name:"cristales", x:760,y:380,angle:90,width:100,height:25},
 
 
-			{type:"villain", name:"jupiter",x:550,y:390},
-			{type:"villain", name:"neptune",x:760,y:280},
-			{type:"villain", name:"tierra",x:400,y:280},
+			{type:"villain", name:"jupiter",x:550,y:390, calories:300},
+			{type:"villain", name:"neptune",x:760,y:280, calories: 180},
+			{type:"villain", name:"tierra",x:400,y:280, calories: 200},
 
 			{type:"hero", name:"meteor1",x:30,y:415},
 			{type:"hero", name:"meteor2",x:80,y:405},
@@ -524,9 +524,9 @@ var levels = {
 
 			{type:"block", name:"panel", x:660, y:290, angle:90, width:100, height:25},
 
-			{type:"villain", name:"neptune",x:640,y:290},
-			{type:"villain", name:"jupiter",x:655,y:400},
-			{type:"villain", name:"tierra",x:855,y:410},
+			{type:"villain", name:"neptune",x:640,y:290, calories: 200},
+			{type:"villain", name:"jupiter",x:655,y:400, calories: 400},
+			{type:"villain", name:"tierra",x:855,y:410, calories: 100},
 
 			{type:"hero", name:"meteor1",x:30,y:415},
 			{type:"hero", name:"meteor2",x:80,y:405},
@@ -554,9 +554,9 @@ var levels = {
 			{type:"block", name:"cristales", x:650,y:263,angle:90,width:100,height:25},
 
 
-			{type:"villain", name:"jupiter",x:650,y:360},
-			{type:"villain", name:"tierra",x:650,y:163},
-			{type:"villain", name:"neptune",x:485,y:189},
+			{type:"villain", name:"jupiter",x:650,y:360, calories: 400},
+			{type:"villain", name:"tierra",x:650,y:163, calories: 200},
+			{type:"villain", name:"neptune",x:485,y:189, calories: 200},
 
 
 		/* 	{type:"block", name:"cristales", x:410,y:310,angle:90,width:250,height:25},
