@@ -220,8 +220,8 @@ var game = {
 		if( entity.name == "meteor2"){
 			if(mouse.down && !entity.propulsed){
 				entity.propulsed = true;
-				var x = game.currentHero.m_linearVelocity.x*5;
-				var y = game.currentHero.m_linearVelocity.y*5;
+				var x = game.currentHero.m_linearVelocity.x*4;
+				var y = game.currentHero.m_linearVelocity.y*4;
 				var propulsion = new b2Vec2(x,y);
 				game.currentHero.ApplyImpulse(propulsion,game.currentHero.GetPosition());
 			}
@@ -533,6 +533,51 @@ var levels = {
 			{type:"hero", name:"meteor3",x:140,y:405}
 		]
 		},
+
+		//level 6
+		{
+			foreground: 'scifiLandscape',
+			background: 'cassiopeia',
+			entities: [
+			{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
+			{type:"ground", name:"panel", x:185,y:390,width:30,height:80,isStatic:true},
+
+			{type:"block", name:"cristales", x:470,y:389,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:500,y:389,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:470,y:289,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:500,y:289,angle:90,width:100,height:25},
+
+			{type:"block", name:"panel", x:650,y:389,width:200,height:25},
+			{type:"block", name:"panel", x:575,y:363,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:725,y:363,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:650,y:288,width:200,height:25},
+			{type:"block", name:"cristales", x:650,y:263,angle:90,width:100,height:25},
+
+
+			{type:"villain", name:"jupiter",x:650,y:360},
+			{type:"villain", name:"tierra",x:650,y:163},
+			{type:"villain", name:"neptune",x:485,y:189},
+
+
+		/* 	{type:"block", name:"cristales", x:410,y:310,angle:90,width:250,height:25},
+			{type:"block", name:"cristales", x:700,y:310,angle:90,width:250,height:25},
+			{type:"block", name:"cristales", x:553,y:170,width:445,height:25},
+
+			{type:"block", name:"panel", x:530,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"cristales", x:605,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"panel", x:560,y:335,width:160,height:25},
+
+			{type:"block", name:"panel", x:590, y:290, angle:90, width:100, height:25},
+
+			{type:"villain", name:"neptune",x:545,y:290},
+			{type:"villain", name:"jupiter",x:555,y:400},
+			{type:"villain", name:"tierra",x:735,y:410}, */
+
+			{type:"hero", name:"meteor1",x:30,y:415},
+			{type:"hero", name:"meteor2",x:80,y:405},
+			{type:"hero", name:"meteor2",x:140,y:405}
+		]
+		}
 	],
 	// inicializar pantalla de seleccion
 
