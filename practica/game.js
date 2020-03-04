@@ -89,6 +89,10 @@ var game = {
 	restartLevel:function(){
 		window.cancelAnimationFrame(game.animationFrame);		
 		game.lastUpdateTime = undefined;
+		if(game.currentHero != undefined){
+			box2d.world.DestroyBody(game.currentHero);
+			game.currentHero = undefined;
+		}
 		levels.load(game.currentLevel.number);
 	},
 	startNextLevel:function(){
@@ -173,6 +177,7 @@ var game = {
 		if(game.mode=="intro"){		
 			if(game.panTo(700)){
 				game.mode = "load-next-hero";
+				console.log(game.mode);
 			}			 
 		}	   
 
@@ -215,21 +220,16 @@ var game = {
 		if( entity.name == "meteor2"){
 			if(mouse.down && !entity.propulsed){
 				entity.propulsed = true;
-				var power = 100;
 				var x = game.currentHero.m_linearVelocity.x*5;
 				var y = game.currentHero.m_linearVelocity.y*5;
-				//(x > 0)? x += power : x -= power;
-				//(y > 0)? y += power : y -= power;
 				var propulsion = new b2Vec2(x,y);
 				game.currentHero.ApplyImpulse(propulsion,game.currentHero.GetPosition());
-				console.log(game.currentHero);
 			}
 		
 		}
 		//comprobar si va muy despacio para iniciar la cuenta atras de destrucción
 		if(game.currentHero.m_linearVelocity.x > -1 && game.currentHero.m_linearVelocity.x < 1 && game.currentHero.m_linearVelocity.y > -1 && game.currentHero.m_linearVelocity.y < 1 && !game.currentHero.destroyState){
 			game.currentHero.destroyState = true;
-			console.log("Cuenta atrás");
 			setTimeout(game.destroySlowHero,3000,game.currentHero);
 		}
 
@@ -246,7 +246,7 @@ var game = {
 
 	 if (game.mode == "load-next-hero"){
 		 game.countHeroesAndVillains();
-
+		console.log(game);
 		 // Comprobar si algÃºn villano estÃ¡ vivo, si no, termine el nivel (Ã©xito)
 		 if (game.villains.length == 0){
 			 game.mode = "level-success";
@@ -271,6 +271,7 @@ var game = {
 			 game.panTo(game.slingshotX);
 			 if(!game.currentHero.IsAwake()){
 				 game.mode = "wait-for-firing";
+				 console.log(game.mode);
 			 }
 		 }
 		}	
@@ -286,7 +287,6 @@ var game = {
 
 	destroySlowHero:function(hero){
 		hero.destroyFinished = true;
-		console.log("destruido");
 	},
 
 	showEndingScreen:function(){
@@ -527,7 +527,6 @@ var levels = {
 	//cargar todos los datos
 	load:function(number){
 		box2d.init();
-
 		game.currentLevel = {number:number,hero:[]};
 		game.score = 0;
 		$('#score').html('Score: '+game.score);
