@@ -20,3 +20,13 @@ body {
 .portfolio-item {
   margin-bottom: 30px;
 }
+
+.bg-dark{
+  background-color: maroon !important;
+}
+.card{
+ border-color: rgb(196, 23, 23); 
+}
+.breadcrumb{
+  background-color: rgba(238, 128, 128, 0.562);
+}
