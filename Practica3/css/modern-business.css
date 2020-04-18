@@ -7,6 +7,14 @@ body {
   padding-top: 56px;
 }
 
+a {
+  color: rgba(238, 128, 128);
+}
+
+a:hover {
+  color: white;
+}
+
 .carousel-item {
   height: 65vh;
   min-height: 300px;
@@ -27,6 +35,12 @@ body {
 .card{
  border-color: rgb(196, 23, 23); 
 }
+
+.card-header {
+  background-color: maroon !important;
+  color: white;
+}
+
 .breadcrumb{
   background-color: rgba(238, 128, 128, 0.562);
 }
