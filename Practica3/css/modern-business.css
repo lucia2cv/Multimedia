@@ -44,3 +44,23 @@ a:hover {
 .breadcrumb{
   background-color: rgba(238, 128, 128, 0.562);
 }
+#conversion{
+  width:100%;
+  
+}
+th, td {
+  border: solid maroon;
+  background-color: rgba(238, 128, 128, 0.562) !important;
+}
+#imagenesfaq{
+  width: 50%; 
+  height: 50%;
+}
+h2{
+  font-size: 2em;
+  color: maroon;
+}
+h3{
+  font-size: 1em;
+  color: rgba(218, 91, 91, 0.925);
+}
