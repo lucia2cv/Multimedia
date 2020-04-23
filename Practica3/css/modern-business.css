@@ -7,8 +7,21 @@ body {
   padding-top: 56px;
 }
 
-a {
-  color: rgba(238, 128, 128);
+a { 
+  color: blue;
+  text-decoration: underline;
+}
+
+.nav-link, .card-nip-link {
+  color: white !important;
+}
+
+.tree-link {
+  color: maroon;
+}
+
+.breadcrumb-item.active{
+  color: black;
 }
 
 a:hover {
@@ -37,6 +50,10 @@ a:hover {
  border-color: rgb(196, 23, 23); 
 }
 
+.text-header {
+  font-size: 1.5rem;
+}
+
 .card-header {
   background-color: maroon !important;
   color: white;
@@ -53,7 +70,7 @@ th, td {
   border: solid maroon;
   background-color: rgba(238, 128, 128, 0.562) !important;
 }
-#imagenesfaq{
+.imagenesfaq{
   width: 50%; 
   height: 50%;
 }
